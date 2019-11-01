@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DocumentComponent } from './document/document.component';
-import { DocumentDetailComponent } from './document-detail/document-detail.component';
 import { DocumentEditComponent } from './document-edit/document-edit.component';
 import { DocumentNewComponent } from './document-new/document-new.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,15 +21,18 @@ import {
   MatToolbarModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ReportsComponent } from './reports/reports.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DocumentComponent,
-    DocumentDetailComponent,
     DocumentEditComponent,
     DocumentNewComponent,
-    MenuComponent
+    MenuComponent,
+    ReportsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

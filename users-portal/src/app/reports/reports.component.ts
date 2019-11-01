@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Document } from '../model/document';
+import { Report } from '../model/report';
 
 @Component({
-  selector: 'app-document',
-  templateUrl: './document.component.html',
-  styleUrls: ['./document.component.scss']
+  selector: 'app-reports',
+  templateUrl: './reports.component.html',
+  styleUrls: ['./reports.component.scss']
 })
-export class DocumentComponent implements OnInit {
+export class ReportsComponent implements OnInit {
 
-  dataSource: Document[];
+  dataSource: Report[];
   isLoadingResults = true;
 
   constructor(private _api: ApiService) { }
 
   ngOnInit() {
-    this._api.getDocuments()
+    this._api.getReports()
     .subscribe(res => {
       this.dataSource = res;
       console.log(this.dataSource);

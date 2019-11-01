@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpRequest } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Document } from 'src/app/model/document';
+import { Report } from './model/report';
+import { User } from './model/user';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -25,6 +27,24 @@ export class ApiService {
       );
   }
 
+  getReports (): Observable<Report[]> {
+    const url = `${apiUrl}report`
+    return this.http.get<Report[]>(url)
+      .pipe(
+        tap(documents => console.log('leu os reports')),
+        catchError(this.handleError('getReports', []))
+      );
+  }
+
+  getUsers (): Observable<User[]> {
+    const url = `${apiUrl}user`
+    return this.http.get<User[]>(url)
+      .pipe(
+        tap(documents => console.log('leu os usuarios')),
+        catchError(this.handleError('getUsers', []))
+      );
+  }
+
   getDocument(id: number): Observable<Document> {
     const url = `${apiUrl}/${id}`;
     return this.http.get<Document>(url).pipe(
@@ -33,12 +53,17 @@ export class ApiService {
     );
   }
 
-  addDocument (document): Observable<Document> {
-    return this.http.post<Document>(apiUrl, document, httpOptions).pipe(
-      // tslint:disable-next-line:no-shadowed-variable
-      tap((document: Document) => console.log(`adicionou o documento com w/ id=${document._id}`)),
-      catchError(this.handleError<Document>('addDocument'))
-    );
+  upload(fileDoc: File, authorDoc: string){
+    const formData = new FormData();
+    var documentUp = new Document();
+    documentUp.author = authorDoc;
+    documentUp.file = fileDoc;
+    const url = `${apiUrl}document-xlsx/upload-file`;
+    formData.append('File', fileDoc);
+    formData.append('Author', authorDoc);
+    console.log(fileDoc.name);
+    const request = new HttpRequest('POST', url, formData);
+    return this.http.request(request);
   }
 
   updateDocument(id, document): Observable<any> {

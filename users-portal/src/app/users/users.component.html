@@ -1,0 +1,23 @@
+<div class="card mt-3">
+    <h5 class="card-header bg-gradient-info">Usuários Cadastrados</h5>
+    <div class="card-body">
+        <table class="table table-hover table-fixed">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Data nascimento</th>
+                <th>Sexo</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of dataSource">
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.birthDate | date}}</td>
+                    <td>{{user.sex}}</td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
