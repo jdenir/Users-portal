@@ -9,6 +9,11 @@ import { ReportsComponent } from './reports/reports.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'documents',
+    pathMatch: 'full'
+  },
+  {
     path: 'documents',
     component: DocumentComponent,
     data: { title: 'Documentos'}
@@ -32,11 +37,6 @@ const routes: Routes = [
     path: 'users',
     component: UsersComponent,
     data: { title: 'Usuários'}
-  },
-  {
-    path: '',
-    redirectTo: '/documents',
-    pathMatch: 'full'
   }
 ];
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
+import { delay } from 'q';
 
 @Component({
   selector: 'app-document-new',
@@ -28,7 +29,9 @@ export class DocumentNewComponent implements OnInit {
     var author = (<HTMLInputElement>document.getElementById('authorInput')).value;
     if(this.file){
       this.api.upload(this.file, author)
-        .subscribe(response => console.log("upload enviado"));
+        .subscribe(response => {
+          this.router.navigate(['/documents']);
+        });
     }
   }
 }
