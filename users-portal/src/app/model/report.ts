@@ -1,4 +1,6 @@
 export class Report {
-    _id: number;
-    report_type: number;
+    recordEntered: number;
+  recordUpdated: number;
+  recordSkipped: number;
+  recordFailed: number;
 }

@@ -27,12 +27,12 @@ export class ApiService {
       );
   }
 
-  getReports (): Observable<Report[]> {
-    const url = `${apiUrl}report`
-    return this.http.get<Report[]>(url)
+  getReports (): Observable<Report> {
+    const url = `${apiUrl}report/reportChart`
+    return this.http.get<Report>(url)
       .pipe(
         tap(documents => console.log('leu os reports')),
-        catchError(this.handleError('getReports', []))
+        catchError(this.handleError<Report>('getReports'))
       );
   }
 

@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ReportsComponent } from './reports/reports.component';
 import { UsersComponent } from './users/users.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { UsersComponent } from './users/users.component';
     MatSidenavModule,  
     MatTableModule,
     MatToolbarModule,
-    LayoutModule
+    LayoutModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
