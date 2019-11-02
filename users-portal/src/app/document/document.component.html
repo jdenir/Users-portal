@@ -1,0 +1,25 @@
+<div class="card mt-3">
+    <h5 class="card-header bg-gradient-info">Documentos enviados</h5>
+    <div class="card-body">
+        <table class="table table-hover table-fixed">
+            <thead>
+              <tr>
+                <th>Nome Doc.</th>
+                <th>Eviado por</th>
+                <th>Data envio</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let document of dataSource">
+                    <td>{{document.docName}}</td>
+                    <td>{{document.author}}</td>
+                    <td>{{document.creationDate | date}}</td>
+                    <td *ngIf="document.authorization == 0"><button class="btn btn-outline-primary" mat-list-item routerLink="/documents-edit/{{document.id}}" routerLinkActive="active">Autorizar</button></td>
+                    <td *ngIf="document.authorization == 2"><span class="btn btn-outline-success">Autorizado</span></td>
+                    <td *ngIf="document.authorization == 1"><span class="btn btn-outline-danger">Não Autorizado</span></td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
