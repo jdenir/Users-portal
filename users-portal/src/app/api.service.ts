@@ -46,7 +46,7 @@ export class ApiService {
   }
 
   getDocument(id: number): Observable<Document> {
-    const url = `${apiUrl}/${id}`;
+    const url = `${apiUrl}document-xlsx/${id}`;
     return this.http.get<Document>(url).pipe(
       tap(_ => console.log(`leu o documento id=${id}`)),
       catchError(this.handleError<Document>(`getDocumet id=${id}`))
@@ -66,10 +66,10 @@ export class ApiService {
     return this.http.request(request);
   }
 
-  updateDocument(id, document): Observable<any> {
-    const url = `${apiUrl}/${id}`;
+  updateDocument(document): Observable<any> {
+    const url = `${apiUrl}document-xlsx`;
     return this.http.put(url, document, httpOptions).pipe(
-      tap(_ => console.log(`atualiza o documento com id=${id}`)),
+      tap(_ => console.log(`atualiza o documento com id=${document.id}`)),
       catchError(this.handleError<any>('updateDocument'))
     );
   }
